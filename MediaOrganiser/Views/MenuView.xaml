@@ -54,7 +54,7 @@
         <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="8" MinWidth="130">
             <TextBlock Text="Search" Margin="5" FontSize="18"/>
             <Button Content="Folder" Margin="5"/>
-            <Button Content="Playlist" Margin="5"/>
+            <Button x:Name="SearchPlaylist" Content="Playlist" Margin="5"/>
             <Button Content="From file" Margin="5"/>
 
             <Separator Margin="5"/>
