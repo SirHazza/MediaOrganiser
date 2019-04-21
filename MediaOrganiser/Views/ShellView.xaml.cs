@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace MediaOrganiser.Views
 {
     /// <summary>
-    /// Interaction logic for SelectSearchPlaylistView.xaml
+    /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class SelectSearchPlaylistView : Window
+    public partial class ShellView : Window
     {
-        public SelectSearchPlaylistView()
+        public ShellView()
         {
             InitializeComponent();
         }

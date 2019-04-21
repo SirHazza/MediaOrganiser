@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MediaOrganiser.Views
 {
     /// <summary>
-    /// Interaction logic for EditListView.xaml
+    /// Interaction logic for SearchSelectPlaylistView.xaml
     /// </summary>
-    public partial class EditListView : UserControl
+    public partial class SearchSelectPlaylistView : UserControl
     {
-        public EditListView()
+        public SearchSelectPlaylistView()
         {
             InitializeComponent();
         }

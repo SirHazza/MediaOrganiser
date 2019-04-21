@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MediaOrganiser.Views
@@ -17,7 +18,7 @@ namespace MediaOrganiser.Views
     /// <summary>
     /// Interaction logic for SearchView.xaml
     /// </summary>
-    public partial class SearchView : Window
+    public partial class SearchView : UserControl
     {
         public SearchView()
         {

@@ -19,6 +19,7 @@ namespace MediaOrganiser.ViewModels
         // Search Playlist
         public void SearchPlaylist()
         {
+            //ActivateItem(new SearchSelectPlaylistViewModel());
             
         }
     }

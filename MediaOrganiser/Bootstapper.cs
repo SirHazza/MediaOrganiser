@@ -11,11 +11,13 @@ namespace MediaOrganiser
         public Bootstapper()
         {
             Initialize();
+            
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<MenuViewModel>();
+            DisplayRootViewFor<ShellViewModel>();
+            
         }
     }
 }
