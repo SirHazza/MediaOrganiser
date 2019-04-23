@@ -8,59 +8,35 @@
              d:DesignHeight="300" d:DesignWidth="525">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="0" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="0" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="0" />
         </Grid.RowDefinitions>
 
 
         <!-- Title box -->
-        <Rectangle Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" MinWidth="250" Stroke="Black"/>
+        <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" MinWidth="250" Stroke="Black"/>
 
-        <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="20">
             <TextBlock Text="Media Organiser" FontSize="24" />
             <Separator Margin="5"/>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Version " HorizontalAlignment="Center"  />
                 <TextBlock Text="X.Y.Z" HorizontalAlignment="Center"  />
             </StackPanel>
-            <Button x:Name="Exit" Content="Exit" Width="50" Margin="0,20, 0, 0" />
+            
+            <!--Exit-->
+            <Button x:Name="buttonExit" Content="Exit" Width="50" Margin="0,20, 0, 0" />
         </StackPanel>
 
-        <!-- Vert divide -->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="40,0">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-        </StackPanel>
-
-        <!-- Buttons -->
-        <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="8" MinWidth="130">
-            <TextBlock Text="Search" Margin="5" FontSize="18"/>
-            <Button Content="Folder" Margin="5"/>
-            <Button x:Name="SearchPlaylist" Content="Playlist" Margin="5"/>
-            <Button Content="From file" Margin="5"/>
-
-            <Separator Margin="5"/>
-
-            <TextBlock Text="Edit lists" Margin="5" FontSize="18"/>
-            <Button Content="Playlist" Margin="5"/>
-            <Button Content="Categories" Margin="5"/>
-
-        </StackPanel>
+        
+        
     </Grid>
 </UserControl>

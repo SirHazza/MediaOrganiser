@@ -15,18 +15,49 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
         <!-- Navigation -->
+        <Rectangle Grid.Column="1" Grid.Row="1" Stroke="Gray" Opacity="0.5"/>
+        
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Debug" />
-            <Button Content="Menu"  x:Name="Menu" Margin="10,0"/>
+
+            <!-- -->
+            <Button x:Name="buttonHome" Content="Home" Margin="5,0"/>
+
+
+            <!-- Vert divide -->
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            </StackPanel>
+            
+            <TextBlock Text="Search" Margin="3" FontSize="18" VerticalAlignment="Center"/>
+            <!-- Search buttons -->
+            <Button x:Name="buttonSearchFolder" Content="Folder" Margin="5,0"/>
+            <Button x:Name="buttonSearchFile" Content="From file" Margin="5,0"/>
+
+            <StackPanel Margin="5,0">
+                <Button x:Name="buttonSearchPlaylist" Content="Playlist" />
+                <ComboBox />
+            </StackPanel>
+
+            <!-- Vert divide -->
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            </StackPanel>
+
+            <!-- Edit buttons -->
+            <TextBlock Text="Edit lists" Margin="3" FontSize="18" VerticalAlignment="Center"/>
+            <Button x:Name="buttonEditPlaylists" Content="Playlists" Margin="5,0"/>
+            <Button x:Name="buttonEditCategories" Content="Categories" Margin="5,0"/>
+            
         </StackPanel>
 
         <!-- Content -->
-        <ContentControl x:Name="ActiveItem" Grid.Row="2" Grid.Column="1"/>
+        <ContentControl x:Name="ActiveItem" Grid.Row="3" Grid.Column="1"/>
 
     </Grid>
 </Window>
