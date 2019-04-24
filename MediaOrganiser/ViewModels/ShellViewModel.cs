@@ -38,14 +38,17 @@ namespace MediaOrganiser.ViewModels
         }
         public void buttonSearchFolder()
         {
+            Search.RunSearch(1);
             ActivateSearchView();
         }
         public void buttonSearchFile()
         {
+            Search.RunSearch(2);
             ActivateSearchView();
         }
         public void buttonSearchPlaylist()
         {
+            Search.RunSearch(3);
             ActivateSearchView();
         }
         public void buttonEditPlaylists()

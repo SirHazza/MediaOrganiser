@@ -23,8 +23,8 @@
 
             <!-- Menu and text -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                <TextBlock Text="Searching: " />
-                <TextBlock Text="XYZ" />
+                <TextBlock Text="Searching: " FontWeight="Bold" />
+                <TextBlock x:Name="textSearchType" Text="{Binding Path=_searchTypeName, Mode=OneWay}" />
             </StackPanel>
 
             <!-- Submission -->
@@ -33,11 +33,38 @@
                 <ListBox Width="50" Margin="0,0,10,0"/>
                 <Button Width="50" Content="Search" Margin="0,0,10,0"/>
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
-                <Button Content="Save Search"   />
+                <Button Content="Save Search" />
             </StackPanel>
 
             <!-- DataGrid -->
-            <DataGrid/>
+            <DataGrid x:Name="searchData" CanUserAddRows="False" AutoGenerateColumns="false">
+                <DataGrid.Columns>
+                    
+                    <!-- Picture-->
+                    <DataGridTemplateColumn Header="Picture">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path=picture, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <!-- Title-->
+                    <DataGridTextColumn Header="Title" Binding="{Binding Path=title, Mode=OneWay}"/>
+                    <!-- Ext-->
+                    <DataGridTextColumn Header="Ext" Binding="{Binding Path=ext, Mode=OneWay}"/>
+
+                    <!-- Edit-->
+                    <DataGridTemplateColumn Header="Edit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
 
         </StackPanel>
     </Grid>

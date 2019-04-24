@@ -24,7 +24,7 @@
 
             <!-- Menu and text -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                <TextBlock Text="Editing: " />
+                <TextBlock Text="Editing: " FontWeight="Bold"/>
                 <TextBlock Text="XYZ" />
             </StackPanel>
 
