@@ -37,22 +37,22 @@
             </StackPanel>
 
             <!-- DataGrid -->
-            <DataGrid x:Name="searchData" CanUserAddRows="False" AutoGenerateColumns="false">
+            <DataGrid x:Name="FilesData" CanUserAddRows="False" AutoGenerateColumns="false">
                 <DataGrid.Columns>
                     
                     <!-- Picture-->
                     <DataGridTemplateColumn Header="Picture">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Path=picture, Mode=OneWay}"/>
+                                <Image Source="{Binding Path=picturePath, Mode=OneWay}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     
                     <!-- Title-->
-                    <DataGridTextColumn Header="Title" Binding="{Binding Path=title, Mode=OneWay}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Path=titleName, Mode=OneWay}"/>
                     <!-- Ext-->
-                    <DataGridTextColumn Header="Ext" Binding="{Binding Path=ext, Mode=OneWay}"/>
+                    <DataGridTextColumn Header="Ext" Binding="{Binding Path=extName, Mode=OneWay}"/>
 
                     <!-- Edit-->
                     <DataGridTemplateColumn Header="Edit">

@@ -121,18 +121,18 @@ namespace MediaOrganiser
 
 
         // Get a set of data in the config file as list
-        public static List<string> ReturnConfigSetList(int set)
-        {
-            int configLength = config.GetLength(0);
-            List<string> dataSet = new List<string>();
+        //public static List<string> ReturnConfigSetList(int set)
+        //{
+        //    int configLength = config.GetLength(0);
+        //    List<string> dataSet = new List<string>();
 
-            for (int i = 0; i < configLength; i++)
-            {
-                dataSet.Add(config[i, set]);
-            }
+        //    for (int i = 0; i < configLength; i++)
+        //    {
+        //        dataSet.Add(config[i, set]);
+        //    }
 
-            return dataSet;
-        }
+        //    return dataSet;
+        //}
 
     }
 }
