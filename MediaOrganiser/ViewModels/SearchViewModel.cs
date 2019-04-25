@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediaOrganiser.ViewModels
 {
@@ -28,7 +29,20 @@ namespace MediaOrganiser.ViewModels
 
         }
 
+        public void buttonEdit(string titleName)
+        {
 
+        }
+
+        public void buttonSearch()
+        {
+
+        }
+
+        public void SayHello(string data)
+        {
+
+        }
 
     }
 }
