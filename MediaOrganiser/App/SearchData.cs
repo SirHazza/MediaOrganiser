@@ -38,6 +38,8 @@ namespace MediaOrganiser
             output.playlists = Main.config[id, 7];
             output.comment = Main.config[id, 8];
             output.picturePath = _picturePath;
+            output.configLine = id;
+
             return output;
         }
 
@@ -56,6 +58,7 @@ namespace MediaOrganiser
         public string playlists { get; set; }
         public string comment { get; set; }
         public string picturePath { get; set; }
+        public int configLine { get; set; }
 
     }
 }

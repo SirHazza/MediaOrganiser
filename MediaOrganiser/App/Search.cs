@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Caliburn.Micro;
 
 namespace MediaOrganiser
 {
@@ -12,6 +13,11 @@ namespace MediaOrganiser
     {
         static string[] availableSearchTypes = new string[3] {"Folder", "File", "Playlist"};
         public static string searchTypeName = "null";
+
+        //searchtype
+        //searchfolder
+        //searchplaylist
+        //searchfile
 
         public static void RunSearch(int searchType)
         {
@@ -122,7 +128,49 @@ namespace MediaOrganiser
             }
         }
 
+        // Save any changes made during a search
+        public static void SaveEdits(BindableCollection<FilesModel> searchDataObject)
+        {
 
+            // Open config.txt
+            string[] configFile = File.ReadAllLines(Main.configFile);
+
+            // For each search entry, set config to match
+            int counter = 0;
+            int _configLine;
+            string newLine;
+            foreach (var entry in searchDataObject)
+            {
+                // Config Line from search entry
+                _configLine = searchDataObject[counter].configLine;
+
+                newLine = string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8}",
+                    Main.config[_configLine, 0],
+                    Main.config[_configLine, 1],
+                    Main.config[_configLine, 2],
+                    Main.config[_configLine, 3],
+                    Main.config[_configLine, 4],
+                    searchDataObject[counter].picture,
+                    searchDataObject[counter].categories,
+                    searchDataObject[counter].playlists,
+                    searchDataObject[counter].comment);
+
+                // Config file []
+                configFile[_configLine] = newLine;
+
+                counter++;
+            }
+
+            File.WriteAllLines(Main.configFile, configFile);
+            Main.LoadConfig();
+
+            //RunSearch();
+
+            //when first searching you will need to store the type of search and where/what it is searching in a public var (see above)
+            //you will also need to change RunSearch so that it can either take new input, or use the last search values
+            //in this case we want to use the last search values are we are only reloading the same search
+
+        }
         
 
 

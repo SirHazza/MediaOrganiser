@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediaOrganiser.Views"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" Background="White"
              d:DesignHeight="300" d:DesignWidth="525">
     <Grid>
@@ -30,13 +31,19 @@
 
             <!-- Submission -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+
+                <!-- Filters -->
                 <TextBox Width="180" Margin="0,0,10,0"/>
                 <ListBox Width="50" Margin="0,0,10,0"/>
+                
+                <!-- Buttons -->
                 <Button x:Name="buttonSearch" Width="50" Content="Search" Margin="0,0,10,0"/>
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
                 <Button x:Name="buttonExport" Content="Export Search" Margin="0,0,10,0"/>
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
-                <Button x:Name="buttonSave" Content="Save Edits" />
+                <Button x:Name="buttonSave" Content="Save Edits"
+                        cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+
             </StackPanel>
 
             
@@ -56,19 +63,19 @@
                         </DataGridTemplateColumn>
 
                         <!-- File name & ext-->
-                        <DataGridTextColumn Header="Title" Binding="{Binding Path=title, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Title" Binding="{Binding Path=title, Mode=OneWay}"/>
                         <DataGridTextColumn Header="Ext" Binding="{Binding Path=ext, Mode=OneWay}"/>
 
                         <!-- Edit values -->
-                        <DataGridTextColumn Header="Categories" Binding="{Binding Path=categories, Mode=OneWay}"/>
-                        <DataGridTextColumn Header="Playlists" Binding="{Binding Path=playlists, Mode=OneWay}"/>
-                        <DataGridTextColumn Header="Comment" Binding="{Binding Path=comment, Mode=OneWay}"/>
-                        <DataGridTextColumn Header="Picture name" Binding="{Binding Path=picture, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Categories" Binding="{Binding Path=categories, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Playlists" Binding="{Binding Path=playlists, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Comment" Binding="{Binding Path=comment, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Picture name" Binding="{Binding Path=picture, Mode=TwoWay}"/>
 
-                        <!-- Edit button-->
+                        <!-- Edit button
                         <DataGridTemplateColumn Header="Edit">
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate xmlns:cal="http://www.caliburnproject.org">
+                                <DataTemplate >
                                     <Button x:Name="buttonEdit" Content="Edit" 
                                                 cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}">
                                         <i:Interaction.Triggers >
@@ -82,7 +89,8 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-
+                        -->
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             

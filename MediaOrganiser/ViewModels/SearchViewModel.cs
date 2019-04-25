@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace MediaOrganiser.ViewModels
 {
-    class SearchViewModel : Screen
+    public class SearchViewModel : Screen
     {
         // Search type properties
         public string _searchTypeName
@@ -25,13 +25,6 @@ namespace MediaOrganiser.ViewModels
         {
             SearchData NewSearch = new SearchData();
             FilesData = new BindableCollection<FilesModel>(NewSearch.GetFiles());
-
-
-        }
-
-        public void buttonEdit(string titleName)
-        {
-
         }
 
         public void buttonSearch()
@@ -39,9 +32,14 @@ namespace MediaOrganiser.ViewModels
 
         }
 
-        public void SayHello(string data)
+        public void buttonExport()
         {
 
+        }
+
+        public void buttonSave()
+        {
+            Search.SaveEdits(FilesData);
         }
 
     }
