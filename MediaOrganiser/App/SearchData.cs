@@ -14,10 +14,16 @@ namespace MediaOrganiser
             List<FilesModel> output = new List<FilesModel>();
 
             int configLength = Main.config.GetLength(0);
+            FilesModel newEntry;
 
             for (int i = 0; i < configLength; i++)
             {
-                output.Add(GetOneFile(i));
+                newEntry = GetOneFile(i);
+                if (SearchPreferences(newEntry) == true)
+                {
+                    output.Add(newEntry);
+                }
+                
             }
 
             return output;
@@ -43,6 +49,32 @@ namespace MediaOrganiser
             return output;
         }
 
+        private bool SearchPreferences(FilesModel entry)
+        {
+            bool includeEntry = false;
+
+            switch (Search.searchType)
+            {
+                case 1:
+
+                    if (entry.folderPath == Search.searchFolder)
+                    {
+                        includeEntry = true;
+                    }
+
+                    break;
+
+
+                case 2:
+                    break;
+
+
+                case 3:
+                    break;
+            }
+
+            return includeEntry;
+        }
 
     }
 

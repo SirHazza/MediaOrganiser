@@ -14,33 +14,44 @@ namespace MediaOrganiser
         static string[] availableSearchTypes = new string[3] {"Folder", "File", "Playlist"};
         public static string searchTypeName = "null";
 
-        //searchtype
-        //searchfolder
-        //searchplaylist
-        //searchfile
+        public static int searchType;       //Search Types: 1(Folder) 2(File) 3(Playlist)
+        public static string searchFolder;  //Search folder path
+        public static string searchPlaylist;
+        public static string searchFile;
 
-        public static void RunSearch(int searchType)
+        public static void RunSearch(int _searchType)
         {
-            // Search Types: 1 (Folder), 2 (File), 3 (Playlist)
+            searchType = _searchType;
 
             // Set search window title
-            searchTypeName = availableSearchTypes[searchType - 1];
+            searchTypeName = availableSearchTypes[_searchType - 1];
 
-            // Folder
-            if (searchType == 1)
+            // Search from preference
+            switch (_searchType)
             {
-                string selectedPath = OpenFolder();
+                // Folder
+                case 1: 
+                    string folderPath = OpenFolder();
 
-                if (!string.IsNullOrWhiteSpace(selectedPath))
-                {
-                    ImportFiles(selectedPath);
-                }
-                else
-                {
-                    // Show error if path invalid
-                    MessageBox.Show("Error, invalid folder");
-                }
-                
+                    if (!string.IsNullOrWhiteSpace(folderPath))
+                    {
+                        searchFolder = folderPath;
+                        ImportFiles(folderPath);
+                    }
+                    else
+                    {
+                        // Show error if path invalid
+                        MessageBox.Show("Error, invalid folder");
+                    }
+                    break;
+
+                // File
+                case 2:
+                    break;
+
+                // Playlist
+                case 3:
+                    break;
             }
 
 
