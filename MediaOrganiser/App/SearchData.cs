@@ -51,15 +51,16 @@ namespace MediaOrganiser
 
         private bool SearchPreferences(FilesModel entry)
         {
-            bool includeEntry = false;
+            bool[] includeEntry = new bool[3] { false, false, false }; 
 
+            // 1 (Check agaisnt search type parameter)
             switch (Search.searchType)
             {
                 case 1:
 
                     if (entry.folderPath == Search.searchFolder)
                     {
-                        includeEntry = true;
+                        includeEntry[0] = true;
                     }
 
                     break;
@@ -73,7 +74,37 @@ namespace MediaOrganiser
                     break;
             }
 
-            return includeEntry;
+            // 2 (Check agaisnt ext)
+            if (string.IsNullOrWhiteSpace(Search.searchExt) == true)
+            {
+                includeEntry[1] = true;
+            }
+            else if (entry.ext == Search.searchExt)
+            {
+                includeEntry[1] = true;
+            }
+
+            // 3 (Check agaisnt title)
+            if (string.IsNullOrWhiteSpace(Search.searchTitle) == true)
+            {
+                includeEntry[2] = true;
+            }
+            else if ((entry.title).Contains(Search.searchTitle) == true)
+            {
+                includeEntry[2] = true;
+            }
+
+
+            // If all checks pass include entry in search
+            if (includeEntry[0] == true & includeEntry[1] == true & includeEntry[2] == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+  
         }
 
     }

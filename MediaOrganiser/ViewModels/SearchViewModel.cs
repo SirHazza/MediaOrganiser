@@ -18,12 +18,6 @@ namespace MediaOrganiser.ViewModels
             set { }
         }
 
-        // Ext list properties
-        public string[] _allExt
-        {
-            get { return Main.allExt; }
-            set { }
-        }
 
 
         public BindableCollection<FilesModel> FilesData { get; set; }
@@ -35,15 +29,10 @@ namespace MediaOrganiser.ViewModels
             FilesData = new BindableCollection<FilesModel>(NewSearch.GetFiles());
         }
 
-        public void buttonSearch(string titleSearch, string extSearch)
-        {
-            Console.WriteLine(titleSearch + extSearch);
-            FilesData[0].comment = "IT WORKS";
-        }
 
-        public void buttonExport()
+        public void buttonExport(string boxStateName)
         {
-
+            SaveState.RunSaveState(boxStateName);
         }
 
         public void buttonSave()

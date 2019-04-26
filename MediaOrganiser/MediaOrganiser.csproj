@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="App\SaveState.cs" />
     <Compile Include="App\Search.cs" />
     <Compile Include="App\Main.cs" />
     <Compile Include="App\SearchData.cs" />

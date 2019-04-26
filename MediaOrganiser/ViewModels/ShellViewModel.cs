@@ -11,9 +11,18 @@ namespace MediaOrganiser.ViewModels
 
     public class ShellViewModel : Conductor<object>
     {
+
+        // Ext list properties
+        public string[] _allExt
+        {
+            get { return Main.allExt; }
+            set { }
+        }
+
         // On shell start up
         public ShellViewModel()
         {
+            //Show menu view first
             ActivateMenuView();
         }
 
@@ -31,26 +40,33 @@ namespace MediaOrganiser.ViewModels
             ActivateItem(new EditListViewModel());
         }
 
+
         // Navigation buttons
+
+        //HOME
         public void buttonHome()
         {
             ActivateMenuView();
         }
-        public void buttonSearchFolder()
+
+        //SEARCH
+        public void buttonSearchFolder(string titleSearch, string extSearch)
         {
-            Search.RunSearch(1);
+            Search.RunSearch(1, titleSearch, extSearch);
             ActivateSearchView();
         }
-        public void buttonSearchFile()
+        public void buttonSearchFile(string titleSearch, string extSearch)
         {
-            Search.RunSearch(2);
+            Search.RunSearch(2, titleSearch, extSearch);
             ActivateSearchView();
         }
-        public void buttonSearchPlaylist()
+        public void buttonSearchPlaylist(string titleSearch, string extSearch)
         {
-            Search.RunSearch(3);
+            Search.RunSearch(3, titleSearch, extSearch);
             ActivateSearchView();
         }
+
+        //EDIT
         public void buttonEditPlaylists()
         {
             ActivateEditListView();

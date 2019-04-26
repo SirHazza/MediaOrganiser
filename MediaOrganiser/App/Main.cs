@@ -26,9 +26,9 @@ namespace MediaOrganiser
         public static string categoriesFile = containerFolder + @"\categories.txt";
         public static string playlistsFile = containerFolder + @"\playlists.txt";
         // Supported extensions
-        public static string[] allExt = new string[10]
+        public static string[] allExt = new string[11]
         {
-            ".flac", ".ogg", ".aac", ".mp3", ".wav", ".avi", ".mp4", ".mov", ".wmv", ".mkv"
+            "", ".flac", ".ogg", ".aac", ".mp3", ".wav", ".avi", ".mp4", ".mov", ".wmv", ".mkv"
         };
 
         // Run method on start

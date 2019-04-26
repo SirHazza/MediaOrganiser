@@ -18,10 +18,14 @@ namespace MediaOrganiser
         public static string searchFolder;  //Search folder path
         public static string searchPlaylist;
         public static string searchFile;
+        public static string searchTitle;   //Current title search preference
+        public static string searchExt;     //Current ext search preference
 
-        public static void RunSearch(int _searchType)
+        public static void RunSearch(int _searchType, string _searchTitle, string _searchExt)
         {
             searchType = _searchType;
+            searchTitle = _searchTitle;
+            searchExt = _searchExt;
 
             // Set search window title
             searchTypeName = availableSearchTypes[_searchType - 1];
@@ -31,7 +35,7 @@ namespace MediaOrganiser
             {
                 // Folder
                 case 1: 
-                    string folderPath = OpenFolder();
+                    string folderPath = OpenFolder("Select folder to search");
 
                     if (!string.IsNullOrWhiteSpace(folderPath))
                     {
@@ -60,11 +64,12 @@ namespace MediaOrganiser
         }
 
 
-        public static string OpenFolder()
+        public static string OpenFolder(string description)
         {
             // Open file explorer
             using (var fbd = new FolderBrowserDialog())
             {
+                fbd.Description = description;
                 DialogResult result = fbd.ShowDialog();
                 return fbd.SelectedPath;
 
@@ -79,7 +84,7 @@ namespace MediaOrganiser
             }
         }
 
-
+        // Import files from system to config file
         public static void ImportFiles(string path)
         {
             string[] files = Directory.GetFiles(path);
@@ -129,6 +134,7 @@ namespace MediaOrganiser
                             path
                             );
 
+
                         //Path.GetExtension(null); // returns .exe
                         //Path.GetFileNameWithoutExtension(null); // returns File
                         //Path.GetFileName(null); // returns File.exe
@@ -174,6 +180,7 @@ namespace MediaOrganiser
 
             File.WriteAllLines(Main.configFile, configFile);
             Main.LoadConfig();
+            MessageBox.Show("Successfully saved any edits");
 
             //RunSearch();
 

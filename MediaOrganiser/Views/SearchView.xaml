@@ -24,27 +24,22 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
 
             <!-- Menu and text -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Searching: " FontWeight="Bold" />
                 <TextBlock x:Name="textSearchType" Text="{Binding Path=_searchTypeName, Mode=OneWay}" />
             </StackPanel>
 
             <!-- Submission -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
 
-                <!-- Filters -->
-                <TextBox x:Name="titleSearch" Width="180" Margin="0,0,10,0"/>
-                <ComboBox x:Name="extSearch" Width="50" Margin="0,0,10,0" ItemsSource="{Binding _allExt}">
-
-                </ComboBox>
                 
-                <!-- Buttons -->
-                <Button x:Name="buttonSearch" Width="50" Content="Search" Margin="0,0,10,0"
-                        cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
 
-                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
+
+                <!-- Buttons -->
                 <Button x:Name="buttonExport" Content="Export Search" Margin="0,0,10,0"/>
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
+
+                <TextBox x:Name="boxStateName" Width="100" Margin="0,0,5,0"/>
                 <Button x:Name="buttonSave" Content="Save Edits"
                         cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
 
@@ -53,7 +48,7 @@
             
                 <!-- DataGrid -->
                 <DataGrid x:Name="FilesData" CanUserAddRows="False" AutoGenerateColumns="false"
-                          MaxHeight="190" VerticalScrollBarVisibility="Visible"
+                          MaxHeight="300" VerticalScrollBarVisibility="Visible"
                           HorizontalScrollBarVisibility="Visible">
                     <DataGrid.Columns>
 
@@ -74,7 +69,7 @@
                         <DataGridTextColumn Header="Categories" Binding="{Binding Path=categories, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="Playlists" Binding="{Binding Path=playlists, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="Comment" Binding="{Binding Path=comment, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Picture name" Binding="{Binding Path=picture, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Picture File" Binding="{Binding Path=picture, Mode=TwoWay}"/>
 
                         <!-- Edit button
                         <DataGridTemplateColumn Header="Edit">
