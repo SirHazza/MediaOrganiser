@@ -18,7 +18,11 @@ namespace MediaOrganiser.ViewModels
             set { }
         }
 
-
+        public string _searchStateValues
+        {
+            get { return Search.searchStateValues; }
+            set { }
+        }
 
         public BindableCollection<FilesModel> FilesData { get; set; }
 

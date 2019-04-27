@@ -56,6 +56,7 @@ namespace MediaOrganiser
             // 1 (Check agaisnt search type parameter)
             switch (Search.searchType)
             {
+                //Folder
                 case 1:
 
                     if (entry.folderPath == Search.searchFolder)
@@ -65,12 +66,31 @@ namespace MediaOrganiser
 
                     break;
 
-
+                //State File
                 case 2:
+
+                    //Folder or playlist from state file
+                    switch (Search.searchStateType)
+                    {
+                        case 1:
+                            if (entry.folderPath == Search.searchFolder)
+                            {
+                                includeEntry[0] = true;
+                            }
+                            break;
+
+                        case 2:
+                            break;
+
+                    }
+
+
+
                     break;
 
-
+                //Playlist
                 case 3:
+                    //NOTE ALSO INCLUDE SAME LOGIC ABOVE IN CASE 2.2
                     break;
             }
 

@@ -30,7 +30,6 @@
                 <!-- Home button -->
                 <Button x:Name="buttonHome" Content="Home" Margin="5,0"/>
 
-
                 <!-- Vert divide -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />

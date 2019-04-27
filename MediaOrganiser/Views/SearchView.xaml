@@ -27,22 +27,18 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Searching: " FontWeight="Bold" />
                 <TextBlock x:Name="textSearchType" Text="{Binding Path=_searchTypeName, Mode=OneWay}" />
+                <TextBlock Text="{Binding Path=_searchStateValues}" Margin="5,0,0,0" HorizontalAlignment="Right"/>
             </StackPanel>
 
             <!-- Submission -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-
-                
-
-
                 <!-- Buttons -->
+                <TextBox x:Name="boxStateName" Width="100" Margin="0,0,5,0" />
                 <Button x:Name="buttonExport" Content="Export Search" Margin="0,0,10,0"/>
+                
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
-
-                <TextBox x:Name="boxStateName" Width="100" Margin="0,0,5,0"/>
                 <Button x:Name="buttonSave" Content="Save Edits"
                         cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
-
             </StackPanel>
 
             

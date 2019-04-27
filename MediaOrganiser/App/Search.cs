@@ -21,11 +21,12 @@ namespace MediaOrganiser
         public static string searchTitle;   //Current title search preference
         public static string searchExt;     //Current ext search preference
 
+        public static int searchStateType;          //Search type from state file: 1/2(Folder/Playlist)
+        public static string searchStateValues;     //Search values from state file
+
         public static void RunSearch(int _searchType, string _searchTitle, string _searchExt)
         {
             searchType = _searchType;
-            searchTitle = _searchTitle;
-            searchExt = _searchExt;
 
             // Set search window title
             searchTypeName = availableSearchTypes[_searchType - 1];
@@ -34,7 +35,11 @@ namespace MediaOrganiser
             switch (_searchType)
             {
                 // Folder
-                case 1: 
+                case 1:
+
+                    searchStateValues = "";
+                    searchTitle = _searchTitle;
+                    searchExt = _searchExt;
                     string folderPath = OpenFolder("Select folder to search");
 
                     if (!string.IsNullOrWhiteSpace(folderPath))
@@ -51,10 +56,25 @@ namespace MediaOrganiser
 
                 // File
                 case 2:
+                    string filePath = OpenFile();
+                    if (!string.IsNullOrWhiteSpace(filePath))
+                    {
+                        searchFile = filePath;
+                        ImportState(filePath);
+                    }
+                    else
+                    {
+                        // Show error if path invalid
+                        MessageBox.Show("Error, invalid file");
+                    }
+
                     break;
 
                 // Playlist
                 case 3:
+                    searchStateValues = "";
+                    searchTitle = _searchTitle;
+                    searchExt = _searchExt;
                     break;
             }
 
@@ -82,6 +102,18 @@ namespace MediaOrganiser
 
                 //}
             }
+        }
+
+        public static string OpenFile()
+        {
+            using (var fbd = new OpenFileDialog())
+            {
+                fbd.Multiselect = false;
+                fbd.DefaultExt = "txt";
+                DialogResult result = fbd.ShowDialog();
+                return fbd.FileName;
+            }
+                
         }
 
         // Import files from system to config file
@@ -191,6 +223,37 @@ namespace MediaOrganiser
         }
         
 
+        // Import State file
+        public static void ImportState(string filePath)
+        {
+            StreamReader reader = new StreamReader(filePath);
+
+            string line;
+            string[] parts;
+
+            line = reader.ReadLine();
+            reader.Close();
+            parts = line.Split(';');
+
+            if (string.IsNullOrWhiteSpace(parts[0]))
+            {
+                //playlist
+                searchPlaylist = parts[1];
+                searchStateType = 2;
+                searchStateValues = string.Format("[Playlist({0}) Title({1}) Ext({2})]", parts[1], parts[2], parts[3]);
+            }
+            else
+            {
+                //folder
+                searchFolder = parts[0];
+                ImportFiles(parts[0]);
+                searchStateType = 1;
+                searchStateValues = string.Format("[Folder({0}) Title({1}) Ext({2})]", parts[0], parts[2], parts[3]);
+            }
+
+            searchTitle = parts[2];
+            searchExt = parts[3];
+        }
 
 
 
