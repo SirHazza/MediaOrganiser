@@ -91,5 +91,6 @@ namespace MediaOrganiser.ViewModels
             System.Windows.Application.Current.Shutdown();
         }
 
+
     }
 }

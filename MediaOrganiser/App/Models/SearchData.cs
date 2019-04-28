@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,24 +52,21 @@ namespace MediaOrganiser
 
         private bool SearchPreferences(FilesModel entry)
         {
-            bool[] includeEntry = new bool[3] { false, false, false }; 
+            bool[] includeEntry = new bool[4] { false, false, false, false }; 
 
             // 1 (Check agaisnt search type parameter)
             switch (Search.searchType)
             {
                 //Folder
                 case 1:
-
                     if (entry.folderPath == Search.searchFolder)
                     {
                         includeEntry[0] = true;
                     }
-
                     break;
 
                 //State File
                 case 2:
-
                     //Folder or playlist from state file
                     switch (Search.searchStateType)
                     {
@@ -85,20 +83,19 @@ namespace MediaOrganiser
                                 includeEntry[0] = true;
                             }
                             break;
-
                     }
-
-
-
                     break;
 
                 //Playlist
                 case 3:
-                    if (entry.playlists.Contains(Search.searchPlaylist))
+                    if (string.IsNullOrWhiteSpace(Search.searchPlaylist))
+                    {
+                        //doesn't include entry
+                    }
+                    else if (entry.playlists.Contains(Search.searchPlaylist))
                     {
                         includeEntry[0] = true;
                     }
-
                     break;
             }
 
@@ -122,9 +119,14 @@ namespace MediaOrganiser
                 includeEntry[2] = true;
             }
 
+            // 4 (Check file exists)
+            if (File.Exists(entry.filePath))
+            {
+                includeEntry[3] = true;
+            }
 
             // If all checks pass include entry in search
-            if (includeEntry[0] == true & includeEntry[1] == true & includeEntry[2] == true)
+            if (includeEntry[0] == true & includeEntry[1] == true & includeEntry[2] == true & includeEntry[3] == true)
             {
                 return true;
             }

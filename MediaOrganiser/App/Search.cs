@@ -9,7 +9,7 @@ using Caliburn.Micro;
 
 namespace MediaOrganiser
 {
-    class Search
+    public class Search
     {
         static string[] availableSearchTypes = new string[3] {"Folder", "File", "Playlist"};
         public static string searchTypeName = "null";
@@ -36,7 +36,6 @@ namespace MediaOrganiser
             {
                 // Folder
                 case 1:
-
                     searchPlaylist = "";
                     searchTitle = _searchTitle;
                     searchExt = _searchExt;
@@ -68,7 +67,6 @@ namespace MediaOrganiser
                         // Show error if path invalid
                         MessageBox.Show("Error, invalid file");
                     }
-
                     break;
 
                 // Playlist
@@ -84,7 +82,6 @@ namespace MediaOrganiser
                         // Show error if path invalid
                         MessageBox.Show("Error, no playlist selected");
                     }
-
                     break;
             }
 
@@ -166,21 +163,41 @@ namespace MediaOrganiser
             int counter = 0;
             int _configLine;
             string newLine;
+            bool cleanString = true;
             foreach (var entry in searchDataObject)
             {
                 // Config Line from search entry
                 _configLine = searchDataObject[counter].configLine;
 
+                // Check string doesn't contain ';'
+                if (searchDataObject[counter].picture.Contains(';'))
+                {
+                    cleanString = false;
+                }
+                else if (searchDataObject[counter].categories.Contains(';'))
+                {
+                    cleanString = false;
+                }
+                else if (searchDataObject[counter].playlists.Contains(';'))
+                {
+                    cleanString = false;
+                }
+                else if (searchDataObject[counter].comment.Contains(';'))
+                {
+                    cleanString = false;
+                }
+
+                // Write new string with edits
                 newLine = string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8}",
-                    Main.config[_configLine, 0],
-                    Main.config[_configLine, 1],
-                    Main.config[_configLine, 2],
-                    Main.config[_configLine, 3],
-                    Main.config[_configLine, 4],
-                    searchDataObject[counter].picture,
-                    searchDataObject[counter].categories,
-                    searchDataObject[counter].playlists,
-                    searchDataObject[counter].comment);
+                Main.config[_configLine, 0],
+                Main.config[_configLine, 1],
+                Main.config[_configLine, 2],
+                Main.config[_configLine, 3],
+                Main.config[_configLine, 4],
+                searchDataObject[counter].picture,
+                searchDataObject[counter].categories,
+                searchDataObject[counter].playlists,
+                searchDataObject[counter].comment);
 
                 // Config file []
                 configFile[_configLine] = newLine;
@@ -188,9 +205,21 @@ namespace MediaOrganiser
                 counter++;
             }
 
-            File.WriteAllLines(Main.configFile, configFile);
-            Main.LoadConfig();
-            MessageBox.Show("Successfully saved any edits");
+            switch (cleanString)
+            {
+                case true:
+                    File.WriteAllLines(Main.configFile, configFile);
+                    Main.LoadConfig();
+                    MessageBox.Show("Successfully saved any edits");
+                    break;
+
+                case false:
+                    MessageBox.Show("Error! Edits contained semicolon ';'");
+                    break;
+            }
+
+
+            
 
             //RunSearch();
 

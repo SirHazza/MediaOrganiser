@@ -1,11 +1,13 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace MediaOrganiser.ViewModels
 {
@@ -33,15 +35,22 @@ namespace MediaOrganiser.ViewModels
             FilesData = new BindableCollection<FilesModel>(NewSearch.GetFiles());
         }
 
-
+        // Exports current search state to file
         public void buttonExport(string boxStateName)
         {
             SaveState.RunSaveState(boxStateName);
         }
 
+        // Saves any edits
         public void buttonSave()
         {
             Search.SaveEdits(FilesData);
+        }
+
+        // Play selected file
+        public void buttonOpen(string filePath)
+        {
+            Process.Start(filePath);
         }
 
     }

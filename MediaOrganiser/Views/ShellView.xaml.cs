@@ -23,5 +23,6 @@ namespace MediaOrganiser.Views
         {
             InitializeComponent();
         }
+
     }
 }

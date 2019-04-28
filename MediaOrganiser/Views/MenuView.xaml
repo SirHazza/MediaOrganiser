@@ -29,7 +29,7 @@
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Version " HorizontalAlignment="Center"  />
-                <TextBlock Text="X.Y.Z" HorizontalAlignment="Center"  />
+                <TextBlock x:Name="textVersion" HorizontalAlignment="Center"  />
             </StackPanel>
             
             <!--Exit-->

@@ -24,24 +24,24 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
 
             <!-- Menu and text -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Editing: " FontWeight="Bold"/>
                 <TextBlock Text="{Binding Path=_listTypeName}" />
             </StackPanel>
 
             <!-- Save edits -->
-            <Button x:Name="buttonSave" Content="Save Edits" Margin="0,0,0,20" Width="80"
+            <Button x:Name="buttonSave" Content="Save Edits" Margin="0,0,0,10" Width="80" Background="DarkSeaGreen" ToolTip="Save any edits made to list entries"
                         cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}" HorizontalAlignment="Left"/>
             
             <!-- DataGrid -->
             <DataGrid x:Name="EntryData" CanUserAddRows="true" AutoGenerateColumns="false"
-                          MaxHeight="200" VerticalScrollBarVisibility="Visible"
+                          MaxHeight="235" VerticalScrollBarVisibility="Visible"
                           HorizontalScrollBarVisibility="Visible" MaxWidth="200" MinWidth="100"
                           HorizontalAlignment="Left">
                 <DataGrid.Columns>
 
                     <!-- Entry -->
-                    <DataGridTextColumn Header="Entry" Binding="{Binding Path=entry, Mode=TwoWay}" MinWidth="100"/>
+                    <DataGridTextColumn Header="Entry" Binding="{Binding Path=entry, Mode=TwoWay}" MinWidth="100" />
 
                 </DataGrid.Columns>
             </DataGrid>
