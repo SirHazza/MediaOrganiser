@@ -15,7 +15,6 @@ namespace MediaOrganiser
             ListModel newEntry; // New list entry
             
             string listPath = null;
-            string listLine;
             string[] splitLists;
 
             // Get List file path
@@ -33,10 +32,7 @@ namespace MediaOrganiser
             }
 
             // Read list file and add to array
-            StreamReader reader = new StreamReader(listPath);
-            listLine = reader.ReadLine();
-            splitLists = listLine.Split(',');
-            reader.Close();
+            splitLists = Main.ReturnSplitList(listPath);
 
             // Removes complier warning
             newEntry = new ListModel();

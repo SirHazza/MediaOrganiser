@@ -19,6 +19,13 @@ namespace MediaOrganiser.ViewModels
             set { }
         }
 
+        // Playlist combo properties
+        public string[] _allPlaylists
+        {
+            get { return Main.allPlaylists; }
+            set { }
+        }
+
         // On shell start up
         public ShellViewModel()
         {
@@ -50,19 +57,19 @@ namespace MediaOrganiser.ViewModels
         }
 
         //SEARCH
-        public void buttonSearchFolder(string titleSearch, string extSearch)
+        public void buttonSearchFolder(string titleSearch, string extSearch, string comboPlaylists)
         {
-            Search.RunSearch(1, titleSearch, extSearch);
+            Search.RunSearch(1, titleSearch, extSearch, comboPlaylists);
             ActivateSearchView();
         }
-        public void buttonSearchFile(string titleSearch, string extSearch)
+        public void buttonSearchFile(string titleSearch, string extSearch, string comboPlaylists)
         {
-            Search.RunSearch(2, titleSearch, extSearch);
+            Search.RunSearch(2, titleSearch, extSearch, comboPlaylists);
             ActivateSearchView();
         }
-        public void buttonSearchPlaylist(string titleSearch, string extSearch)
+        public void buttonSearchPlaylist(string titleSearch, string extSearch, string comboPlaylists)
         {
-            Search.RunSearch(3, titleSearch, extSearch);
+            Search.RunSearch(3, titleSearch, extSearch, comboPlaylists);
             ActivateSearchView();
         }
 
@@ -77,7 +84,12 @@ namespace MediaOrganiser.ViewModels
             Main.listType = 2;
             ActivateEditListView();
         }
-        
+
+        // Exit button
+        public void buttonExit()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
 
     }
 }

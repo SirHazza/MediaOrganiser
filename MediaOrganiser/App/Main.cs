@@ -31,6 +31,13 @@ namespace MediaOrganiser
             "", ".flac", ".ogg", ".aac", ".mp3", ".wav", ".avi", ".mp4", ".mov", ".wmv", ".mkv"
         };
 
+        // Avaiable playlists
+        public static string[] allPlaylists
+        {
+            get { return ReturnSplitList(playlistsFile); }
+            set { }
+        }
+
         // Lists
         public static int listType;
 
@@ -162,6 +169,20 @@ namespace MediaOrganiser
 
         //    return dataSet;
         //}
+
+        //Get list as split array
+        public static string[] ReturnSplitList(string listPath)
+        {
+            string listLine;
+            string[] splitLists;
+
+            // Read list file and add to array
+            StreamReader reader = new StreamReader(listPath);
+            listLine = reader.ReadLine();
+            splitLists = listLine.Split(',');
+            reader.Close();
+            return splitLists;
+        }
 
     }
 }

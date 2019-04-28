@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mediaIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
@@ -73,32 +76,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="App\Lists.cs" />
-    <Compile Include="App\ListData.cs" />
+    <Compile Include="App\Models\ListData.cs" />
     <Compile Include="App\SaveState.cs" />
     <Compile Include="App\Search.cs" />
     <Compile Include="App\Main.cs" />
-    <Compile Include="App\SearchData.cs" />
-    <Compile Include="ViewModels\EditEntryViewModel.cs" />
-    <Compile Include="ViewModels\EditFileViewModel.cs" />
+    <Compile Include="App\Models\SearchData.cs" />
     <Compile Include="ViewModels\EditListViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
-    <Compile Include="ViewModels\SearchSelectPlaylistViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\EditEntryView.xaml.cs">
-      <DependentUpon>EditEntryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditFileView.xaml.cs">
-      <DependentUpon>EditFileView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EditListView.xaml.cs">
       <DependentUpon>EditListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchSelectPlaylistView.xaml.cs">
-      <DependentUpon>SearchSelectPlaylistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
@@ -135,25 +126,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\EditEntryView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditFileView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Resource Include="mediaIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Page Include="Views\EditListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SearchSelectPlaylistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

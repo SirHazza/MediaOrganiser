@@ -80,6 +80,10 @@ namespace MediaOrganiser
                             break;
 
                         case 2:
+                            if (entry.playlists.Contains(Search.searchPlaylist))
+                            {
+                                includeEntry[0] = true;
+                            }
                             break;
 
                     }
@@ -90,7 +94,11 @@ namespace MediaOrganiser
 
                 //Playlist
                 case 3:
-                    //NOTE ALSO INCLUDE SAME LOGIC ABOVE IN CASE 2.2
+                    if (entry.playlists.Contains(Search.searchPlaylist))
+                    {
+                        includeEntry[0] = true;
+                    }
+
                     break;
             }
 

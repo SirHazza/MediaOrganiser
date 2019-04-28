@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MediaOrganiser.Views"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Media Organiser" Height="450" Width="700">
+        Title="Media Organiser" Height="470" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -27,23 +27,57 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,5">
             <StackPanel Orientation="Horizontal" >
 
-                <!-- Home button -->
-                <Button x:Name="buttonHome" Content="Home" Margin="5,0"/>
+                <!-- Home and Exit button -->
+                <StackPanel Margin="8,0,0,0">
+                    <Button x:Name="buttonHome" Content="Home" Width="60" Height="50" Margin="0,3,0,5" />
+                    <Button x:Name="buttonExit" Content="Exit" Width="60" />
+                </StackPanel>
+                
 
                 <!-- Vert divide -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                 </StackPanel>
 
-                <TextBlock Text="Search" Margin="3" FontSize="18" VerticalAlignment="Center"/>
-                <!-- Search buttons -->
-                <Button x:Name="buttonSearchFolder" Content="Folder" Margin="5,0"/>
-                <Button x:Name="buttonSearchFile" Content="From file" Margin="5,0"/>
+                <StackPanel>
 
-                <StackPanel Margin="5,0">
-                    <Button x:Name="buttonSearchPlaylist" Content="Playlist" />
-                    <ComboBox />
+                    <TextBlock Text="Search" Margin="5,0,0,5" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal" >
+                        
+                        <!-- Folder search -->
+                        <Button x:Name="buttonSearchFolder" Content="Folder" Width="60" Margin="5,0,0,0"/>
+
+                        <!-- Vert divide -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0,0,0">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+
+                        <!-- Playlist search -->
+                        <StackPanel Orientation="Horizontal" Margin="5,0">
+                            <Button x:Name="buttonSearchPlaylist" Content="Playlist" Width="60"/>
+                            <ComboBox x:Name="comboPlaylists" MinWidth="100" ItemsSource="{Binding _allPlaylists}" Margin="5,0"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    
+                    <!-- Filters -->
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
+                        <TextBox x:Name="titleSearch" Width="175" Margin="0,0,5,0"/>
+                        <ComboBox x:Name="extSearch" Width="60" Margin="0,0,10,0" ItemsSource="{Binding _allExt}"/>
+                    </StackPanel>
+
                 </StackPanel>
+
+                <!-- Vert divide -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Margin="5,0">
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Import" Margin="5,0,0,5" FontSize="16"/>
+                    <Button x:Name="buttonSearchFile" Content="Search file" Width="70" Margin="5,0"/>
+                </StackPanel>
+                
 
                 <!-- Vert divide -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
@@ -51,17 +85,19 @@
                 </StackPanel>
 
                 <!-- Edit buttons -->
-                <TextBlock Text="Edit lists" Margin="3" FontSize="18" VerticalAlignment="Center"/>
-                <Button x:Name="buttonEditPlaylists" Content="Playlists" Margin="5,0"/>
-                <Button x:Name="buttonEditCategories" Content="Categories" Margin="5,0"/>
+                <StackPanel>
+                    <TextBlock Text="Edit lists" Margin="5,0,0,5" FontSize="16"/>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="buttonEditPlaylists" Content="Playlists" Width="70" Margin="5,0"/>
+                        <Button x:Name="buttonEditCategories" Content="Categories" Width="70" Margin="5,0"/>
+                    </StackPanel>
+                </StackPanel>
+                
 
             </StackPanel>
 
-            <!-- Filters -->
-            <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
-                <TextBox x:Name="titleSearch" Width="210" Margin="0,0,10,0"/>
-                <ComboBox x:Name="extSearch" Width="50" Margin="0,0,10,0" ItemsSource="{Binding _allExt}"/>
-            </StackPanel>
+            
             
         </StackPanel>
         <!-- Content -->

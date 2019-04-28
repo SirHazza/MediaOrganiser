@@ -24,7 +24,7 @@ namespace MediaOrganiser
         public static int searchStateType;          //Search type from state file: 1/2(Folder/Playlist)
         public static string searchStateValues;     //Search values from state file
 
-        public static void RunSearch(int _searchType, string _searchTitle, string _searchExt)
+        public static void RunSearch(int _searchType, string _searchTitle, string _searchExt, string _searchPlaylist)
         {
             searchType = _searchType;
 
@@ -37,10 +37,11 @@ namespace MediaOrganiser
                 // Folder
                 case 1:
 
-                    searchStateValues = "";
+                    searchPlaylist = "";
                     searchTitle = _searchTitle;
                     searchExt = _searchExt;
                     string folderPath = Main.OpenFolder("Select folder to search");
+                    searchStateValues = folderPath;
 
                     if (!string.IsNullOrWhiteSpace(folderPath))
                     {
@@ -72,9 +73,18 @@ namespace MediaOrganiser
 
                 // Playlist
                 case 3:
-                    searchStateValues = "";
+                    searchStateValues = _searchPlaylist;
+                    searchPlaylist = _searchPlaylist;
+                    searchFolder = "";
                     searchTitle = _searchTitle;
                     searchExt = _searchExt;
+
+                    if (string.IsNullOrWhiteSpace(searchPlaylist))
+                    {
+                        // Show error if path invalid
+                        MessageBox.Show("Error, no playlist selected");
+                    }
+
                     break;
             }
 
