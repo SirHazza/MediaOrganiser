@@ -179,9 +179,19 @@ namespace MediaOrganiser
             // Read list file and add to array
             StreamReader reader = new StreamReader(listPath);
             listLine = reader.ReadLine();
-            splitLists = listLine.Split(',');
             reader.Close();
-            return splitLists;
+
+            if (!string.IsNullOrWhiteSpace(listLine))
+            {
+                splitLists = listLine.Split(',');
+                return splitLists;
+            }
+            else
+            {
+                string[] splitOne = new string[1] { "" };
+                return splitOne;
+            }
+
         }
 
     }

@@ -69,7 +69,7 @@ namespace MediaOrganiser
                             break;
                     }
 
-                    MessageBox.Show("Successfully saved any edits");
+                    MessageBox.Show("Successfully saved any edits, re-start to filter any new lists");
                     break;
 
                 case false:

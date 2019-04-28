@@ -53,5 +53,10 @@ namespace MediaOrganiser.ViewModels
             Process.Start(filePath);
         }
 
+        // Open pictures directory
+        public void buttonAddImage()
+        {
+            Process.Start("explorer.exe", Main.pictureFolder);
+        }
     }
 }

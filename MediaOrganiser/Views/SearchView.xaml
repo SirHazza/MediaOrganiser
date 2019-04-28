@@ -37,8 +37,12 @@
                 <Button x:Name="buttonExport" Content="Export Search" ToolTip="Export the current search preferences" Background="CadetBlue" Margin="0,0,10,0"/>
                 
                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
-                <Button x:Name="buttonSave" Content="Save Edits" ToolTip="Save any edits made to files" Background="DarkSeaGreen" 
+                <Button x:Name="buttonAddImage" Content="Add pictures" ToolTip="Open picture directory to add images" Background="CadetBlue" Margin="0,0,10,0"
                         cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
+                <Button x:Name="buttonSave" Content="Save Edits" ToolTip="Save any edits made to files" Background="DarkSeaGreen" 
+                        cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
             </StackPanel>
 
 
