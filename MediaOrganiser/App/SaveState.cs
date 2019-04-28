@@ -17,7 +17,7 @@ namespace MediaOrganiser
             if (!string.IsNullOrWhiteSpace(stateFileName))
             {
                 // Get intended folder location
-                string stateFolderPath = Search.OpenFolder("Select folder to save State file");
+                string stateFolderPath = Main.OpenFolder("Select folder to save State file");
 
                 // Create text file
                 string stateFilePath = string.Format(@"{0}\{1}.txt", stateFolderPath, stateFileName);

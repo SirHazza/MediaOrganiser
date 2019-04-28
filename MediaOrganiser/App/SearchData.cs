@@ -32,7 +32,7 @@ namespace MediaOrganiser
         private FilesModel GetOneFile(int id)
         {
             FilesModel output = new FilesModel();
-            string _picturePath = @"C:\Users\harrywigman\source\repos\MediaOrganiser\MediaOrganiser\bin\Debug\data\pictures\" + Main.config[id, 5];
+            string _picturePath = Main.pictureFolder + @"\" + Main.config[id, 5];
 
             output.guid = Main.config[id, 0];
             output.title = Main.config[id, 1];

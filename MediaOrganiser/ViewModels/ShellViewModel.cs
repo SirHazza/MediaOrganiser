@@ -69,10 +69,12 @@ namespace MediaOrganiser.ViewModels
         //EDIT
         public void buttonEditPlaylists()
         {
+            Main.listType = 1;
             ActivateEditListView();
         }
         public void buttonEditCategories()
         {
+            Main.listType = 2;
             ActivateEditListView();
         }
         

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MediaOrganiser
 {
@@ -13,23 +14,25 @@ namespace MediaOrganiser
 
         // Data Objects
         public static string[,] config;
-        //public static string[][] config;
-        //public static string[] playlists;
-        //public static string[] categories;
 
         // Folders
         static string rootFolder = Directory.GetCurrentDirectory();
         static string containerFolder = rootFolder + @"\data";
         public static string pictureFolder = containerFolder + @"\pictures";
+
         // Files
         public static string configFile = containerFolder + @"\config.txt";
         public static string categoriesFile = containerFolder + @"\categories.txt";
         public static string playlistsFile = containerFolder + @"\playlists.txt";
+
         // Supported extensions
         public static string[] allExt = new string[11]
         {
             "", ".flac", ".ogg", ".aac", ".mp3", ".wav", ".avi", ".mp4", ".mov", ".wmv", ".mkv"
         };
+
+        // Lists
+        public static int listType;
 
         // Run method on start
         public static void RunSetup()
@@ -68,6 +71,32 @@ namespace MediaOrganiser
                 fs.Close();
             }
         }
+
+
+        // Get folder path
+        public static string OpenFolder(string description)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = description;
+                DialogResult result = fbd.ShowDialog();
+                return fbd.SelectedPath;
+            }
+        }
+
+
+        // Get file path
+        public static string OpenFile()
+        {
+            using (var fbd = new OpenFileDialog())
+            {
+                fbd.Multiselect = false;
+                fbd.DefaultExt = "txt";
+                DialogResult result = fbd.ShowDialog();
+                return fbd.FileName;
+            }
+        }
+
 
         // Load config file into application
         public static void LoadConfig()

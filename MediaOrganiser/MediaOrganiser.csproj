@@ -72,6 +72,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="App\Lists.cs" />
+    <Compile Include="App\ListData.cs" />
     <Compile Include="App\SaveState.cs" />
     <Compile Include="App\Search.cs" />
     <Compile Include="App\Main.cs" />

@@ -40,7 +40,7 @@ namespace MediaOrganiser
                     searchStateValues = "";
                     searchTitle = _searchTitle;
                     searchExt = _searchExt;
-                    string folderPath = OpenFolder("Select folder to search");
+                    string folderPath = Main.OpenFolder("Select folder to search");
 
                     if (!string.IsNullOrWhiteSpace(folderPath))
                     {
@@ -56,7 +56,7 @@ namespace MediaOrganiser
 
                 // File
                 case 2:
-                    string filePath = OpenFile();
+                    string filePath = Main.OpenFile();
                     if (!string.IsNullOrWhiteSpace(filePath))
                     {
                         searchFile = filePath;
@@ -78,43 +78,10 @@ namespace MediaOrganiser
                     break;
             }
 
-
             Main.LoadConfig();
             
         }
 
-
-        public static string OpenFolder(string description)
-        {
-            // Open file explorer
-            using (var fbd = new FolderBrowserDialog())
-            {
-                fbd.Description = description;
-                DialogResult result = fbd.ShowDialog();
-                return fbd.SelectedPath;
-
-                //if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                //{
-                    // string[] files = Directory.GetFiles(fbd.SelectedPath);
-
-                    // Number of files found : files.Length
-                    // Selected path : fbd.SelectedPath
-
-                //}
-            }
-        }
-
-        public static string OpenFile()
-        {
-            using (var fbd = new OpenFileDialog())
-            {
-                fbd.Multiselect = false;
-                fbd.DefaultExt = "txt";
-                DialogResult result = fbd.ShowDialog();
-                return fbd.FileName;
-            }
-                
-        }
 
         // Import files from system to config file
         public static void ImportFiles(string path)
@@ -176,6 +143,7 @@ namespace MediaOrganiser
                 }
             }
         }
+
 
         // Save any changes made during a search
         public static void SaveEdits(BindableCollection<FilesModel> searchDataObject)

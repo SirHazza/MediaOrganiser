@@ -44,7 +44,7 @@
             
                 <!-- DataGrid -->
                 <DataGrid x:Name="FilesData" CanUserAddRows="False" AutoGenerateColumns="false"
-                          MaxHeight="300" VerticalScrollBarVisibility="Visible"
+                          MaxHeight="280" VerticalScrollBarVisibility="Visible"
                           HorizontalScrollBarVisibility="Visible">
                     <DataGrid.Columns>
 
