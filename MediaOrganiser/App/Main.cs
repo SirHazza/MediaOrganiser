@@ -157,6 +157,12 @@ namespace MediaOrganiser
         //Get list as split array
         public static string[] ReturnSplitList(string listPath)
         {
+            // Create new folders
+            CreateFolders();
+            // Create new files
+            CreateFile(categoriesFile);
+            CreateFile(playlistsFile);
+
             string listLine;
             string[] splitLists;
 
