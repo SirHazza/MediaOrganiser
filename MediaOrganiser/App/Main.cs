@@ -10,44 +10,46 @@ namespace MediaOrganiser
 {
     public class Main
     {
-        // Define variables
-
-        // Data Objects
+        // Config data object
         public static string[,] config;
 
-        // Folders
+        // Folders paths
         static string rootFolder = Directory.GetCurrentDirectory();
         static string containerFolder = rootFolder + @"\data";
         public static string pictureFolder = containerFolder + @"\pictures";
 
-        // Files
+        // Files paths
         public static string configFile = containerFolder + @"\config.txt";
         public static string categoriesFile = containerFolder + @"\categories.txt";
         public static string playlistsFile = containerFolder + @"\playlists.txt";
 
-        // Supported extensions
+        // Supported extensions array
         public static string[] allExt = new string[11]
         {
             "", ".flac", ".ogg", ".aac", ".mp3", ".wav", ".avi", ".mp4", ".mov", ".wmv", ".mkv"
         };
 
-        // Avaiable playlists
+        // Avaiable playlists array
         public static string[] allPlaylists
         {
             get { return ReturnSplitList(playlistsFile); }
             set { }
         }
 
-        // Lists
+        // List type
         public static int listType;
 
-        // Run method on start
+
+        // Application start up method
         public static void RunSetup()
         {
+            // Create new folders
             CreateFolders();
+            // Create new files
             CreateFile(configFile);
             CreateFile(categoriesFile);
             CreateFile(playlistsFile);
+            // Load config file
             LoadConfig();
         }
 
@@ -60,7 +62,7 @@ namespace MediaOrganiser
                 Directory.CreateDirectory(containerFolder);
             }
 
-            // Create sub directory
+            // If directory does not exist, create sub directory for pictures
             if (!Directory.Exists(pictureFolder))
             {
                 Directory.CreateDirectory(pictureFolder);
@@ -79,31 +81,34 @@ namespace MediaOrganiser
             }
         }
 
-
         // Get folder path
         public static string OpenFolder(string description)
         {
+            // Use Folder Browser Dialog
             using (var fbd = new FolderBrowserDialog())
             {
+                // Dialog description
                 fbd.Description = description;
+                // Show dialog to user and return slected path
                 DialogResult result = fbd.ShowDialog();
                 return fbd.SelectedPath;
             }
         }
 
-
         // Get file path
         public static string OpenFile()
         {
+            // Use Open File Dialog
             using (var fbd = new OpenFileDialog())
             {
+                // Set dialog properties
                 fbd.Multiselect = false;
                 fbd.DefaultExt = "txt";
+                // Show dialog to user and return slected path
                 DialogResult result = fbd.ShowDialog();
                 return fbd.FileName;
             }
         }
-
 
         // Load config file into application
         public static void LoadConfig()
@@ -114,18 +119,12 @@ namespace MediaOrganiser
             string[] parts;
             int counter = 0;
 
-            // Clear any previous data
-            //if (!(config == null))
-            //{
-            //    Array.Clear(config, 0, config.GetLength(0) * config.GetLength(1));
-            //}
-
-            // Open stream reader
+            // Read cinfig file
             StreamReader reader = new StreamReader(configFile);
 
+            // While line present, split line by ';' into main config array
             while ((line = reader.ReadLine()) != null)
             {
-
                 parts = line.Split(';');
 
                 for (int i = 0; i < 9; i++)
@@ -136,10 +135,9 @@ namespace MediaOrganiser
                 counter++;
             }
 
+            // Close reader
             reader.Close();
-
         }
-
 
         // Get a set of data in the config file
         public static string[] ReturnConfigSet(int set)
@@ -147,6 +145,7 @@ namespace MediaOrganiser
             int configLength = config.GetLength(0);
             string[] dataSet = new string[configLength];
             
+            // Gets category of data from config array
             for (int i = 0; i < configLength; i++)
             {
                 dataSet[i] = config[i, set];
@@ -154,21 +153,6 @@ namespace MediaOrganiser
 
             return dataSet;
         }
-
-
-        // Get a set of data in the config file as list
-        //public static List<string> ReturnConfigSetList(int set)
-        //{
-        //    int configLength = config.GetLength(0);
-        //    List<string> dataSet = new List<string>();
-
-        //    for (int i = 0; i < configLength; i++)
-        //    {
-        //        dataSet.Add(config[i, set]);
-        //    }
-
-        //    return dataSet;
-        //}
 
         //Get list as split array
         public static string[] ReturnSplitList(string listPath)
@@ -181,6 +165,7 @@ namespace MediaOrganiser
             listLine = reader.ReadLine();
             reader.Close();
 
+            // Split list if content present
             if (!string.IsNullOrWhiteSpace(listLine))
             {
                 splitLists = listLine.Split(',');
@@ -188,10 +173,10 @@ namespace MediaOrganiser
             }
             else
             {
+                // If content empty, return 1 sized array with blank string
                 string[] splitOne = new string[1] { "" };
                 return splitOne;
             }
-
         }
 
     }

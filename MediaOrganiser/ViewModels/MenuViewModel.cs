@@ -11,6 +11,7 @@ namespace MediaOrganiser.ViewModels
 {
     public class MenuViewModel : Screen
     {
+        // Application version property
         public string textVersion
         {
             get { return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion; }

@@ -7,6 +7,7 @@
              mc:Ignorable="d" Background="White"
              d:DesignHeight="300" d:DesignWidth="525">
     <Grid>
+        <!-- Grid definition -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0" />
             <ColumnDefinition Width="*" />
@@ -19,14 +20,16 @@
             <RowDefinition Height="0" />
         </Grid.RowDefinitions>
 
-
         <!-- Title box -->
         <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" MinWidth="250" Stroke="Black"/>
 
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="20">
+
+            <!-- Title -->
             <TextBlock Text="Media Organiser" FontSize="24" />
             <Separator Margin="5"/>
-            
+
+            <!-- Version -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Version " HorizontalAlignment="Center"  />
                 <TextBlock x:Name="textVersion" HorizontalAlignment="Center"  />
@@ -36,7 +39,5 @@
             <Button x:Name="buttonExit" Content="Exit" Width="50" Margin="0,20, 0, 0" />
         </StackPanel>
 
-        
-        
     </Grid>
 </UserControl>

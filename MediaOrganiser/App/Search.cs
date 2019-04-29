@@ -11,31 +11,35 @@ namespace MediaOrganiser
 {
     public class Search
     {
-        static string[] availableSearchTypes = new string[3] {"Folder", "File", "Playlist"};
-        public static string searchTypeName = "null";
+        static string[] availableSearchTypes = new string[3] {"Folder", "File", "Playlist"}; //Search type names
+        public static string searchTypeName = "null";   //Title of search
 
-        public static int searchType;       //Search Types: 1(Folder) 2(File) 3(Playlist)
-        public static string searchFolder;  //Search folder path
-        public static string searchPlaylist;
-        public static string searchFile;
-        public static string searchTitle;   //Current title search preference
-        public static string searchExt;     //Current ext search preference
+        public static int searchType;               //Search Types: 1(Folder) 2(File) 3(Playlist)
+        public static string searchFolder;          //Search folder path
+        public static string searchPlaylist;        //Search Playlist selected
+        public static string searchFile;            //Search file selected
+        public static string searchTitle;           //Current title search preference
+        public static string searchExt;             //Current ext search preference
 
         public static int searchStateType;          //Search type from state file: 1/2(Folder/Playlist)
         public static string searchStateValues;     //Search values from state file
 
+
+        // Run search using prefferences
         public static void RunSearch(int _searchType, string _searchTitle, string _searchExt, string _searchPlaylist)
         {
+            // Set new search type
             searchType = _searchType;
 
             // Set search window title
             searchTypeName = availableSearchTypes[_searchType - 1];
 
-            // Search from preference
+            // Search from preference type
             switch (_searchType)
             {
                 // Folder
                 case 1:
+                    // Set values for search type
                     searchPlaylist = "";
                     searchTitle = _searchTitle;
                     searchExt = _searchExt;
@@ -44,6 +48,7 @@ namespace MediaOrganiser
 
                     if (!string.IsNullOrWhiteSpace(folderPath))
                     {
+                        // Import files from desired search folder
                         searchFolder = folderPath;
                         ImportFiles(folderPath);
                     }
@@ -56,27 +61,31 @@ namespace MediaOrganiser
 
                 // File
                 case 2:
+                    // Open desired file
                     string filePath = Main.OpenFile();
                     if (!string.IsNullOrWhiteSpace(filePath))
                     {
+                        // Run search type from file
                         searchFile = filePath;
                         ImportState(filePath);
                     }
                     else
                     {
-                        // Show error if path invalid
+                        // Show error if file invalid
                         MessageBox.Show("Error, invalid file");
                     }
                     break;
 
                 // Playlist
                 case 3:
+                    // Set values for search type
                     searchStateValues = _searchPlaylist;
                     searchPlaylist = _searchPlaylist;
                     searchFolder = "";
                     searchTitle = _searchTitle;
                     searchExt = _searchExt;
 
+                    // Report error if no selected playlist
                     if (string.IsNullOrWhiteSpace(searchPlaylist))
                     {
                         // Show error if path invalid
@@ -85,14 +94,14 @@ namespace MediaOrganiser
                     break;
             }
 
+            // Load config to view media files in database
             Main.LoadConfig();
-            
         }
-
 
         // Import files from system to config file
         public static void ImportFiles(string path)
         {
+            // Creates array of all files contained within folder
             string[] files = Directory.GetFiles(path);
 
             bool exitFlag;
@@ -101,7 +110,6 @@ namespace MediaOrganiser
             // Check import for each file in path folder
             foreach (var file in files)
             {
-
                 exitFlag = true;
 
                 // Check against supported extensions
@@ -128,10 +136,12 @@ namespace MediaOrganiser
                 // If no import errors import
                 if (exitFlag == false)
                 {
+                    // Write to config file with new imported file
                     using (StreamWriter writetext = new StreamWriter(Main.configFile, append: true))
                     {
                         fileID = Guid.NewGuid();
 
+                        // New media file data entry
                         writetext.WriteLine("{0};{1};{2};{3};{4};;;;",
                             fileID,
                             Path.GetFileNameWithoutExtension(file),
@@ -140,22 +150,15 @@ namespace MediaOrganiser
                             path
                             );
 
-
-                        //Path.GetExtension(null); // returns .exe
-                        //Path.GetFileNameWithoutExtension(null); // returns File
-                        //Path.GetFileName(null); // returns File.exe
-
                         writetext.Close();
                     }
                 }
             }
         }
 
-
         // Save any changes made during a search
         public static void SaveEdits(BindableCollection<FilesModel> searchDataObject)
         {
-
             // Open config.txt
             string[] configFile = File.ReadAllLines(Main.configFile);
 
@@ -164,12 +167,14 @@ namespace MediaOrganiser
             int _configLine;
             string newLine;
             bool cleanString = true;
+
+            // For every object in the data object
             foreach (var entry in searchDataObject)
             {
                 // Config Line from search entry
                 _configLine = searchDataObject[counter].configLine;
 
-                // Check string doesn't contain ';'
+                // Check strings don't contain ';'
                 if (searchDataObject[counter].picture.Contains(';'))
                 {
                     cleanString = false;
@@ -199,49 +204,44 @@ namespace MediaOrganiser
                 searchDataObject[counter].playlists,
                 searchDataObject[counter].comment);
 
-                // Config file []
+                // Add new line to Config file
                 configFile[_configLine] = newLine;
-
                 counter++;
             }
 
             switch (cleanString)
             {
+                // If no errors occured
                 case true:
+                    // Write edits to config
                     File.WriteAllLines(Main.configFile, configFile);
+                    // Reload config
                     Main.LoadConfig();
                     MessageBox.Show("Successfully saved any edits");
                     break;
 
+                // If error
                 case false:
                     MessageBox.Show("Error! Edits contained semicolon ';'");
                     break;
             }
-
-
-            
-
-            //RunSearch();
-
-            //when first searching you will need to store the type of search and where/what it is searching in a public var (see above)
-            //you will also need to change RunSearch so that it can either take new input, or use the last search values
-            //in this case we want to use the last search values are we are only reloading the same search
-
         }
         
-
-        // Import State file
+        // Import search state file
         public static void ImportState(string filePath)
         {
+            // Read state file
             StreamReader reader = new StreamReader(filePath);
 
             string line;
             string[] parts;
 
+            // Read state file line and split
             line = reader.ReadLine();
             reader.Close();
             parts = line.Split(';');
 
+            // Checks if state file is for Folder or Playlist search
             if (string.IsNullOrWhiteSpace(parts[0]))
             {
                 //playlist
@@ -258,14 +258,10 @@ namespace MediaOrganiser
                 searchStateValues = string.Format("[Folder({0}) Title({1}) Ext({2})]", parts[0], parts[2], parts[3]);
             }
 
+            // Sets title and ext search filters
             searchTitle = parts[2];
             searchExt = parts[3];
         }
 
-
-
-
     }
-
-    
 }

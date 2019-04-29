@@ -10,16 +10,22 @@ namespace MediaOrganiser
 {
     public class SearchData
     {
+        // Get all media files needed
         public List<FilesModel> GetFiles()
         {
+            // Create search data object
             List<FilesModel> output = new List<FilesModel>();
 
+            // Gets current config length
             int configLength = Main.config.GetLength(0);
             FilesModel newEntry;
 
+            // Steps through config
             for (int i = 0; i < configLength; i++)
             {
+                // Gets each config entry
                 newEntry = GetOneFile(i);
+                // Adds entry if it matches search preferences
                 if (SearchPreferences(newEntry) == true)
                 {
                     output.Add(newEntry);
@@ -30,11 +36,15 @@ namespace MediaOrganiser
             return output;
         }
 
+        // Get one file entry
         private FilesModel GetOneFile(int id)
         {
+            // Create search data object
             FilesModel output = new FilesModel();
+            // Creates picture path
             string _picturePath = Main.pictureFolder + @"\" + Main.config[id, 5];
 
+            // Outputs config data from entry
             output.guid = Main.config[id, 0];
             output.title = Main.config[id, 1];
             output.ext = Main.config[id, 2];
@@ -52,6 +62,7 @@ namespace MediaOrganiser
 
         private bool SearchPreferences(FilesModel entry)
         {
+            // Preference exit flags
             bool[] includeEntry = new bool[4] { false, false, false, false }; 
 
             // 1 (Check agaisnt search type parameter)
@@ -134,11 +145,11 @@ namespace MediaOrganiser
             {
                 return false;
             }
-  
         }
 
     }
 
+    // Search object model
     public class FilesModel
     {
         public string guid { get; set; }
@@ -152,6 +163,5 @@ namespace MediaOrganiser
         public string comment { get; set; }
         public string picturePath { get; set; }
         public int configLine { get; set; }
-
     }
 }

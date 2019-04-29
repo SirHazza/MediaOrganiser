@@ -11,6 +11,7 @@ namespace MediaOrganiser
     public class SaveState
     {
 
+        // Saves state of current search to file
         public static void RunSaveState(string stateFileName)
         {
             // Check file name contains characters
@@ -45,7 +46,5 @@ namespace MediaOrganiser
             }
         }
         
-        
-
     }
 }

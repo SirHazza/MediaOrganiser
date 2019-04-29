@@ -12,26 +12,11 @@ namespace MediaOrganiser
 
     public class Lists
     {
-        public static string[] availableListTypes = new string[2] { "Playlist", "Categories" };
+        public static string[] availableListTypes = new string[2] { "Playlist", "Categories" }; //Names of list types
 
+        // Save edits to lists
         public static void SaveEdits(BindableCollection<ListModel> entryData)
         {
-            //string[] listFile;
-
-            //// Open list file
-            //switch (Main.listType)
-            //{
-            //    //Playlists
-            //    case 1:
-            //        listFile = File.ReadAllLines(Main.playlistsFile);
-            //        break;
-
-            //    //Categories
-            //    case 2:
-            //        listFile = File.ReadAllLines(Main.categoriesFile);
-            //        break;
-            //}
-
             // For each list entry, set config to match
             int counter = 0;
             string[] newLine = new string[1];
@@ -54,8 +39,8 @@ namespace MediaOrganiser
 
             switch (cleanString)
             {
+                // If no errors
                 case true:
-
                     switch (Main.listType)
                     {
                         //Playlists
@@ -68,14 +53,15 @@ namespace MediaOrganiser
                             File.WriteAllLines(Main.categoriesFile, newLine);
                             break;
                     }
-
                     MessageBox.Show("Successfully saved any edits, re-start to filter any new lists");
                     break;
 
+                // If errors
                 case false:
                     MessageBox.Show("Error! Edits contained semicolon ';'");
                     break;
             }
         }
+
     }
 }

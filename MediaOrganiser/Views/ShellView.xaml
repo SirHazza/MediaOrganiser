@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Media Organiser" Height="470" Width="700">
     <Grid>
+        <!-- Grid Definition -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
@@ -32,19 +33,20 @@
                     <Button x:Name="buttonHome" Content="Home" Width="60" Height="50" ToolTip="View the home screen" Margin="0,3,0,5" />
                     <Button x:Name="buttonExit" Content="Exit" Width="60" Background="IndianRed" Foreground="White" ToolTip="Close the application"/>
                 </StackPanel>
-                
 
                 <!-- Vert divide -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                 </StackPanel>
 
+
+                <!-- Search -->
                 <StackPanel>
 
                     <TextBlock Text="Search" Margin="5,0,0,5" FontSize="16"/>
                     <StackPanel Orientation="Horizontal" >
-                        
-                        <!-- Folder search -->
+
+                        <!-- Folder -->
                         <Button x:Name="buttonSearchFolder" Content="Folder" Width="60" ToolTip="Search a specified folder" Margin="5,0,0,0"/>
 
                         <!-- Vert divide -->
@@ -52,14 +54,14 @@
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <!-- Playlist search -->
+                        <!-- Playlist -->
                         <StackPanel Orientation="Horizontal" Margin="5,0">
                             <Button x:Name="buttonSearchPlaylist" Content="Playlist" Width="60" ToolTip="Search a specified playlist"/>
                             <ComboBox x:Name="comboPlaylists" MinWidth="100" ItemsSource="{Binding _allPlaylists}" ToolTip="Select playlist to search" Margin="5,0,0,0"/>
                         </StackPanel>
-                        
+
                     </StackPanel>
-                    
+
                     <!-- Filters -->
                     <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
                         <TextBox x:Name="titleSearch" Width="175" ToolTip="Enter file title to filter by" Margin="0,0,5,0"/>
@@ -73,34 +75,33 @@
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                 </StackPanel>
 
+
+                <!-- Import -->
                 <StackPanel>
                     <TextBlock Text="Import" Margin="5,0,0,5" FontSize="16"/>
                     <Button x:Name="buttonSearchFile" Content="Search file" Width="70" ToolTip="Import previously created search state file" Margin="5,0"/>
                 </StackPanel>
-                
 
                 <!-- Vert divide -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2" Grid.RowSpan="8" Margin="5,0">
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                 </StackPanel>
 
-                <!-- Edit buttons -->
+
+                <!-- Edit lists -->
                 <StackPanel>
                     <TextBlock Text="Edit lists" Margin="5,0,0,5" FontSize="16"/>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="buttonEditPlaylists" Content="Playlists" Width="70" ToolTip="Edit the available playlists" Margin="5,0"/>
                         <Button x:Name="buttonEditCategories" Content="Categories" Width="70" ToolTip="Edit the available categories" Margin="5,0"/>
                     </StackPanel>
                 </StackPanel>
-                
 
             </StackPanel>
-
-            
-            
         </StackPanel>
-        <!-- Content -->
+        
+        <!-- Active view -->
         <ContentControl x:Name="ActiveItem" Grid.Row="3" Grid.Column="1"/>
 
     </Grid>

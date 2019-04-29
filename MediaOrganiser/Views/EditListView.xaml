@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:MediaOrganiser.Views"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" Background="White"
-             d:DesignHeight="300" d:DesignWidth="240">
+             d:DesignHeight="300" d:DesignWidth="525">
     <Grid>
+        <!-- Grid definition -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0" />
             <ColumnDefinition Width="*" />
@@ -20,10 +21,9 @@
             <RowDefinition Height="0" />
         </Grid.RowDefinitions>
 
-
         <StackPanel Grid.Row="1" Grid.Column="1">
 
-            <!-- Menu and text -->
+            <!-- Title -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Editing: " FontWeight="Bold"/>
                 <TextBlock Text="{Binding Path=_listTypeName}" />
@@ -47,5 +47,6 @@
             </DataGrid>
 
         </StackPanel>
+        
     </Grid>
 </UserControl>
