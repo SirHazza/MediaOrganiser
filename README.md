@@ -1,6 +1,8 @@
 # MediaOrganiser
 Media Organiser - Search App Project (29/04/2019)
 
+![Media Organiser application image](Notes/mediaorganiser.png)
+
 This project was created as a final assessment for my Apprenticeship. In which I was given a short brief to design a media organiser application. The task was done in complete isolation over one week per assessment rules.
 
 ## Outline
